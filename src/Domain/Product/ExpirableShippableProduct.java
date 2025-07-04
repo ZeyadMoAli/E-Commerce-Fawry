@@ -1,12 +1,14 @@
 package Domain.Product;
 
 import Domain.Interfaces.IExpirable;
+import Domain.Interfaces.IShippable;
 
 import java.time.LocalDate;
 
-public class ExpirableProduct extends Product implements IExpirable {
+public class ExpirableShippableProduct extends Product implements IExpirable, IShippable {
     private LocalDate expirationDate;
-    public ExpirableProduct(String name, double price, int quantity, double weight, LocalDate expirationDate) {
+
+    public ExpirableShippableProduct(String name, double price, int quantity, double weight, LocalDate expirationDate) {
         super(name, price, quantity, weight);
         setExpirationDate(expirationDate);
     }

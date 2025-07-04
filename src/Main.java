@@ -26,9 +26,7 @@ public class Main {
         customer.addToMyCart(tv,1);
         customer.addToMyCart(tv,1);
 
-
-        checkoutService.checkout(customer);
-
+        System.out.println(apple.isExpired());
 
 
 
