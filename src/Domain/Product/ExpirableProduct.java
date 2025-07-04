@@ -29,6 +29,6 @@ public class ExpirableProduct extends Product implements IExpirable{
 
     @Override
     public boolean isAvailable() {
-        return super.IsAvailable() && !isExpired();
+        return super.isAvailable() || isExpired();
     }
 }
