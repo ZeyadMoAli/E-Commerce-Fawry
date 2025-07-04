@@ -1,4 +1,4 @@
-package Domain.Product;
+package Domain.Interfaces;
 
 public interface IShippable {
     String getName();

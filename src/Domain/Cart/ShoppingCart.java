@@ -29,7 +29,6 @@ public class ShoppingCart {
     }
 
 
-
     public boolean isEmpty(){
         return cartItems.isEmpty();
     }
@@ -37,5 +36,6 @@ public class ShoppingCart {
     public Map<Product, Integer> getItems() {
         return Map.copyOf(cartItems);
     }
+
 
 }

@@ -1,4 +1,4 @@
-package Domain.Product;
+package Domain.Interfaces;
 
 import java.time.LocalDate;
 
