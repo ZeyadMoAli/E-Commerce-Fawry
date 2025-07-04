@@ -1,6 +1,6 @@
 package Domain.Product;
 
-public abstract class Product {
+public  class Product {
     private String Name;
     private double Price;
     private int Quantity;

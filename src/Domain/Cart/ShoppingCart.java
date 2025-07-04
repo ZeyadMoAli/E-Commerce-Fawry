@@ -20,6 +20,10 @@ public class ShoppingCart {
         if(quantityToBuy > product.getQuantity())
             throw new IllegalArgumentException("Quantity must be less than or equal to the quantity in stock!");
 
+        if(!product.isAvailable()){
+            throw new IllegalArgumentException("Product is not available!");
+        }
+
         int current = cartItems.getOrDefault(product, 0);
         int newQuantity = current + quantityToBuy;
         cartItems.put(product, newQuantity);

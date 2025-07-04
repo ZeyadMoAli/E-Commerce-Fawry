@@ -18,9 +18,6 @@ public class ExpirableProduct extends Product implements IExpirable {
 
     @Override
     public void setExpirationDate(LocalDate date) {
-        if(date.isBefore(LocalDate.now()))
-            throw new IllegalArgumentException("Expiration date cannot be in the past!");
-
         this.expirationDate = date;
     }
 
@@ -31,6 +28,6 @@ public class ExpirableProduct extends Product implements IExpirable {
 
     @Override
     public boolean isAvailable() {
-        return super.isAvailable() || !isExpired();
+        return super.isAvailable() && !isExpired();
     }
 }
