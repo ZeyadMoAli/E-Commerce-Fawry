@@ -6,8 +6,8 @@ import java.time.LocalDate;
 
 public class ExpirableProduct extends Product implements IExpirable {
     private LocalDate expirationDate;
-    public ExpirableProduct(String name, double price, int quantity, LocalDate expirationDate) {
-        super(name, price, quantity);
+    public ExpirableProduct(String name, double price, int quantity, double weight, LocalDate expirationDate) {
+        super(name, price, quantity, weight);
         setExpirationDate(expirationDate);
     }
 

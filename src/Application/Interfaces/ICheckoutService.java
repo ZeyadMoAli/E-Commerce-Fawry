@@ -11,6 +11,6 @@ public interface ICheckoutService {
     public Map<Product, Integer> getShippableProductsFromCart(Map<Product, Integer> cartItems);
     public double calculateShippingCost(Map<Product, Integer> products);
     public double calculateSubTotalCost(Map<Product, Integer> products);
-    public void printReceipt (double subTotal, double shippingCost, Map<Product, Integer> cartItems);
+    public void printReceipt (Customer customer, double subTotal, double shippingCost, Map<Product, Integer> cartItems);
 
 }

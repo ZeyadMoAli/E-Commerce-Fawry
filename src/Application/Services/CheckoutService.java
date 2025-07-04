@@ -29,6 +29,8 @@ public class CheckoutService implements ICheckoutService {
 
         customer.DeductFromBalance(total);
 
+        printReceipt(customer, subTotal, shippingCost, customer.getShoppingCart().getItems());
+
     }
 
     @Override
@@ -44,7 +46,7 @@ public class CheckoutService implements ICheckoutService {
     @Override
     public double calculateShippingCost(Map<Product, Integer> cartItems) {
         Map<Product, Integer> shippableProductsFromCart = getShippableProductsFromCart(cartItems);
-        return shippingService.calculateShippingCost((Map<? extends IShippable, Integer>) shippableProductsFromCart);
+        return shippingService.calculateShippingCost( shippableProductsFromCart);
     }
 
     @Override
@@ -57,9 +59,8 @@ public class CheckoutService implements ICheckoutService {
     }
 
 
-    public void printReceipt(double subTotal, double shippingCost, Map<Product, Integer> cartItems) {
-        // === Shipment Notice ===
-        System.out.println("** Shipment notice **\n");
+    public void printReceipt(Customer customer,double subTotal, double shippingCost, Map<Product, Integer> cartItems) {
+        System.out.println("** Shipment notice **");
 
         double totalWeight = 0;
 
@@ -72,20 +73,30 @@ public class CheckoutService implements ICheckoutService {
                 double productTotalWeight = weight * quantity;
                 totalWeight += productTotalWeight;
 
-                System.out.printf("%dx %s %.0fg\n", quantity, product.getName(), weight * 1000); // grams
+                System.out.println( quantity+"x "+ product.getName()+" "+ weight * 1000 * quantity + "g");
             }
         }
 
-        System.out.printf("\nTotal package weight\n%.1fkg\n\n", totalWeight);
+        System.out.println("Total package weight " + totalWeight+"kg");
+        System.out.println();
 
-        // === Checkout Receipt ===
-        System.out.println("** Checkout receipt **\n");
+        System.out.println("** Checkout receipt **");
+        for (Map.Entry<Product, Integer> entry : cartItems.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
 
+                double weight =  product.getWeight();
+                double productTotalWeight = weight * quantity;
+                totalWeight += productTotalWeight;
+
+                System.out.println( quantity+"x "+ product.getName()+" "+ weight * 1000+ "g");
+        }
 
         System.out.println();
-        System.out.printf("Subtotal %.0f\n", subTotal);
-        System.out.printf("Shipping %.0f\n", shippingCost);
-        System.out.printf("Amount %.0f\n", subTotal + shippingCost);
+        System.out.println("Subtotal " + subTotal);
+        System.out.println("Shipping " + shippingCost);
+        System.out.println("Amount " + (subTotal + shippingCost));
+        System.out.println("New Customer Balance " + customer.getBalance());
     }
 
 }

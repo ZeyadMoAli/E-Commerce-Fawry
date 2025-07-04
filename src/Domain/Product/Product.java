@@ -4,11 +4,13 @@ public abstract class Product {
     private String Name;
     private double Price;
     private int Quantity;
+    private double weight;
 
-    public Product (String name, double price, int quantity){
+    public Product (String name, double price, int quantity, double weight){
         setName(name);
         setPrice(price);
         setQuantity(quantity);
+        setWeight(weight);
     }
 
     protected Product() {
@@ -55,5 +57,16 @@ public abstract class Product {
     @Override
     public int hashCode() {
         return Name.hashCode();
+    }
+
+    public void setWeight(double weight){
+        if(weight <= 0)
+            throw new IllegalArgumentException("Weight must be greater than zero!");
+        this.weight = weight;
+    }
+
+
+    public double getWeight() {
+        return weight;
     }
 }
